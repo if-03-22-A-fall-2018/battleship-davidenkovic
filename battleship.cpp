@@ -51,10 +51,12 @@ CellContent get_shot(int row, int col){
 
 bool shoot(int row, int col){
   if (row<FIELDSIZE && row>-1 && col<FIELDSIZE && col >-1) {
-    if (op[row][col==Boat]) {
-      for (int i = row-1; i < row+1; i++) {
-        for (int j = col-1; j < col+1; j++) {
-          op[i][j] = Water;
+    if (op[row][col]) {
+      for (int i = row-1; i <= row+1; i++) {
+        for (int j = col-1; j <= col+1; j++) {
+          if (i>=0 && i< FIELDSIZE && j>=0 && j< FIELDSIZE ) {
+            op[i][j] = Water;
+          }
         }
       }
     }
