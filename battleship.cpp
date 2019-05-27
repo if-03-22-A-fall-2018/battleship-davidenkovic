@@ -43,24 +43,21 @@ void load_game(){
 }
 
 CellContent get_shot(int row, int col){
-  if (row<FIELDSIZE && row>-1 && col<FIELDSIZE && col >-1) {
+  if ((row<FIELDSIZE && row>-1 )&& (col<FIELDSIZE && col >-1)) {
     return my[row][col];
   }
   return OutOfRange;
 }
 
 bool shoot(int row, int col){
-  if (row<FIELDSIZE && row>-1 && col<FIELDSIZE && col >-1) {
-    if (op[row][col]) {
-      for (int i = row-1; i <= row+1; i++) {
-        for (int j = col-1; j <= col+1; j++) {
-          if (i>=0 && i< FIELDSIZE && j>=0 && j< FIELDSIZE ) {
-            op[i][j] = Water;
-          }
+  if ((row<FIELDSIZE && row>-1) && (col<FIELDSIZE && col >-1)) {
+    for (int i = -1; i <= 1; ++i) {
+      for (int j = -1; j <= 1; ++j) {
+       if (row+i>-1 && row+i<FIELDSIZE && col+j>-1&&col+j<FIELDSIZE) {
+          gu[row+i][col+j] = op[row+i][col+j];
         }
       }
     }
-    gu[row][col] = op[row][col];
     return true;
   }
   return false;
